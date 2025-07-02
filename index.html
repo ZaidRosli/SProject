@@ -239,11 +239,14 @@
 <audio id="bgMusic2" preload="auto" loop>
   <source src="menjaga.mp3" type="audio/mpeg">
 </audio>
+<audio id="bgMusic3" preload="auto" loop>
+  <source src="penjaga.mp3" type="audio/mpeg">
 
 <script>
   document.addEventListener("click", () => {
     const music1 = document.getElementById("bgMusic1");
     const music2 = document.getElementById("bgMusic2");
+    const music3 = document.getElementById("bgMusic3");
 
     if (music1.paused) music1.play().catch(e => console.log("Autoplay blocked:", e));
 
@@ -321,7 +324,7 @@
 
     // Shared function: prompt password, show hearts, redirect
     function handlePdfAccess(pdfFile) {
-      const password = prompt("Password please(birthday kalau aku tak silap 😅):");
+      const password = prompt("Password please (birthday hang kutttt :) ):");
       const correctPassword = "301200";
 
       if (password === correctPassword) {
@@ -339,7 +342,7 @@
           window.open(pdfFile, "_blank");
         }, 2000);
       } else {
-        alert("Salah...Noob :P \ndd/mm/yy format hehe");
+        alert("Salah...Noob :P \ndd/mm/yy format hehe {6 digit number}");
       }
     }
 
