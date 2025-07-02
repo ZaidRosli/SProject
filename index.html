@@ -232,29 +232,32 @@
   <!-- hidden iframe to prevent redirect -->
   <iframe name="hidden_iframe" style="display: none;"></iframe>
 
-  <!-- 🔊 Add background music here -->
-<audio id="bgMusic1" preload="auto" loop>
-  <source src="bergema.mp3" type="audio/mpeg">
-</audio>
-<audio id="bgMusic2" preload="auto" loop>
-  <source src="menjaga.mp3" type="audio/mpeg">
-</audio>
-<audio id="bgMusic3" preload="auto" loop>
-  <source src="penjaga.mp3" type="audio/mpeg">
+  <!-- 🔊 Background Music Playlist -->
+  <audio id="bgMusic" preload="auto"></audio>
+
 
 <script>
+  const musicPlayer = document.getElementById("bgMusic");
+  const playlist = ["bergema.mp3", "menjaga.mp3", "penjaga.mp3"];
+  let trackIndex = 0;
+
+  // Advance to next song when one ends
+  musicPlayer.addEventListener("ended", () => {
+    trackIndex = (trackIndex + 1) % playlist.length;
+    musicPlayer.src = playlist[trackIndex];
+    musicPlayer.play().catch(e => console.warn("Autoplay blocked:", e));
+  });
+
+  // Start music only once when user first clicks
   document.addEventListener("click", () => {
-    const music1 = document.getElementById("bgMusic1");
-    const music2 = document.getElementById("bgMusic2");
-    const music3 = document.getElementById("bgMusic3");
-
-    if (music1.paused) music1.play().catch(e => console.log("Autoplay blocked:", e));
-
-    music1.addEventListener("ended", () => {
-      music2.play().catch(e => console.log("Autoplay blocked:", e));
-    }, { once: true });
+    if (musicPlayer.paused) {
+      musicPlayer.src = playlist[trackIndex];
+      musicPlayer.play().catch(e => console.warn("Autoplay blocked:", e));
+    }
   }, { once: true });
 </script>
+
+
 
   <script>
     const introOverlay = document.getElementById("introOverlay");
@@ -338,9 +341,25 @@
           setTimeout(() => heart.remove(), 4000);
         }
 
-        setTimeout(() => {
-          window.open(pdfFile, "_blank");
-        }, 2000);
+        // Open immediately so iPhone allows it
+const newTab = window.open('', '_blank');
+
+// Create hearts first
+for (let i = 0; i < 30; i++) {
+  const heart = document.createElement("div");
+  heart.textContent = "💖";
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 24 + 12 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}
+
+// After 2 seconds, navigate the new tab
+setTimeout(() => {
+  newTab.location.href = pdfFile;
+}, 2000);
+
       } else {
         alert("Salah...Noob :P \ndd/mm/yy format hehe {6 digit number}");
       }
