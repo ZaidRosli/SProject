@@ -6,184 +6,184 @@
   <title>Seerious ah nak baca???</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #ffe6f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      text-align: center;
-      padding-top: 40px;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: #ffe6f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-align: center;
+  padding-top: 40px;
+}
 
-    /* Intro Overlay */
-    #introOverlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #ffe6f0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      text-align: center;
-      padding: 20px;
-      color: #ff4081;
-      cursor: pointer;
-    }
+#introOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ffe6f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+  color: #ff4081;
+  cursor: pointer;
+}
 
-    #introOverlay img {
-      max-width: 180px;
-      margin-bottom: 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-    }
+#introOverlay img {
+  width: 40vw;
+  max-width: 180px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+}
 
-    #introOverlay h1 {
-      font-size: 2.5rem;
-      margin: 0 0 15px 0;
-    }
+#introOverlay h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 15px;
+}
 
-    #introOverlay p {
-      font-size: 1.2rem;
-      margin: 0;
-      font-style: italic;
-    }
+#introOverlay p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-style: italic;
+}
 
-    /* Main Content */
+#mainContent {
+  display: none;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-    #mainContent {
-      display: none; /* hidden initially */
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+#mainContent h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #ff4081;
+  margin-bottom: 30px;
+}
 
-    #mainContent h1 {
-      font-size: 2.5rem;
-      color: #ff4081;
-      margin-bottom: 30px;
-    }
+#initialBtnContainer,
+#pdfChoiceContainer {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
 
-    #initialBtnContainer {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+#pdfChoiceContainer {
+  display: none;
+}
 
-    #pdfChoiceContainer {
-      display: none; /* hidden initially */
-      gap: 20px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+#catGif {
+  display: none;
+  width: 40vw;
+  max-width: 200px;
+  margin: 0 auto 20px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+}
 
-    #catGif {
-      display: none;
-      max-width: 200px;
-      margin-bottom: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-      margin-left: auto;
-      margin-right: auto;
-    }
+button {
+  padding: 10px 22px;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  user-select: none;
+}
 
-    button {
-      padding: 12px 28px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-      user-select: none;
-    }
+#yesBtn {
+  background-color: #ff4081;
+  color: white;
+}
 
-    #yesBtn {
-      background-color: #ff4081;
-      color: white;
-    }
+#noBtn {
+  background-color: #f8bbd0;
+  color: #880e4f;
+  position: relative;
+  transition: left 0.3s ease, top 0.3s ease;
+}
 
-    #noBtn {
-      background-color: #f8bbd0;
-      color: #880e4f;
-      position: relative;
-      transition: left 0.3s ease, top 0.3s ease;
-    }
+.heart {
+  position: absolute;
+  color: #ff4081;
+  animation: floatUp 4s ease-in infinite;
+  font-size: 20px;
+  user-select: none;
+  pointer-events: none;
+}
 
-    .heart {
-      position: absolute;
-      color: #ff4081;
-      animation: floatUp 4s ease-in infinite;
-      font-size: 20px;
-      user-select: none;
-      pointer-events: none;
-    }
+#customFormContainer {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  background: #fff0f5;
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2);
+  width: 90%;
+  max-width: 500px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #880e4f;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    #customFormContainer {
-      display: none; /* hidden initially */
-      flex-direction: column;
-      align-items: center;
-      margin-top: 30px;
-      background: #fff0f5;
-      border-radius: 20px;
-      padding: 20px 30px;
-      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2);
-      max-width: 500px;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      color: #880e4f;
-      margin-left: auto;
-      margin-right: auto;
-    }
+#customFormContainer h2 {
+  margin-bottom: 10px;
+  color: #ff4081;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
 
-    #customFormContainer h2 {
-      margin-bottom: 10px;
-      color: #ff4081;
-      font-size: 1.8rem;
-    }
+#customFormContainer textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 15px;
+  border: 2px solid #ff99b9;
+  resize: none;
+  font-size: 16px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: #fff8fc;
+}
 
-    #customFormContainer textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 15px;
-      border: 2px solid #ff99b9;
-      resize: none;
-      font-size: 16px;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fff8fc;
-    }
+#customFormContainer button {
+  margin-top: 15px;
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    #customFormContainer button {
-      margin-top: 15px;
-      background-color: #ff4081;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 12px 28px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+#customFormContainer button:hover {
+  background-color: #e03579;
+}
 
-    #customFormContainer button:hover {
-      background-color: #e03579;
-    }
+input, textarea, select {
+  font-size: 16px; /* Prevent iOS zoom */
+}
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(1.5);
-        opacity: 0;
-      }
-    }
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
   </style>
 </head>
 <body>
