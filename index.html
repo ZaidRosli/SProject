@@ -300,21 +300,31 @@
 
     // No button click: hearts then redirects
     noBtn.addEventListener("click", () => {
-      for (let i = 0; i < 30; i++) {
-        const heart = document.createElement("div");
-        heart.textContent = "💔";
-        heart.classList.add("heart");
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 24 + 12 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-      }
+  // Create the hearts
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.textContent = "💔";
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 24 + 12 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
 
-      setTimeout(() => {
-  window.open("sad_page.html", "_blank");
-}, 1500);
+  // Open the new tab immediately to bypass iOS restrictions
+  const newTab = window.open("about:blank", "_blank");
 
-    });
+  // After a delay, change its location (e.g., after hearts float)
+  setTimeout(() => {
+    if (newTab) {
+      newTab.location.href = "sad_page.html";
+    } else {
+      // fallback if blocked
+      window.location.href = "sad_page.html";
+    }
+  }, 1500);
+});
+
       
 
 
