@@ -84,7 +84,7 @@
       }
     }
 
-    /* Custom form style (same as index.html) */
+    /* Custom form style */
     #customFormContainer {
       display: none;
       flex-direction: column;
@@ -193,10 +193,19 @@
 
       if (password === correctPassword) {
         showHearts();
+
+        // Open blank tab immediately to avoid popup blockers
+        const newTab = window.open('', '_blank');
+
+        if (!newTab) {
+          alert('Please allow popups to open the PDF.');
+          return;
+        }
+
         setTimeout(() => {
-          window.open(pdfFile, "_blank");
+          newTab.location.href = pdfFile;
           if (callback) callback();
-        }, 2000);
+        }, 500);
       } else {
         alert("Salah...Noob :P \ndd/mm/yy format hehe {6 digit number}");
       }
