@@ -237,24 +237,29 @@ input, textarea, select {
 
 
 <script>
-  const musicPlayer = document.getElementById("bgMusic");
-  const playlist = ["bergema.mp3", "menjaga.mp3", "penjaga.mp3"];
-  let trackIndex = 0;
+const musicPlayer = document.getElementById("bgMusic");
+const playlist = ["bergema.mp3", "menjaga.mp3", "penjaga.mp3"];
+let trackIndex = 0;
 
-  // Advance to next song when one ends
-  musicPlayer.addEventListener("ended", () => {
-    trackIndex = (trackIndex + 1) % playlist.length;
-    musicPlayer.src = playlist[trackIndex];
-    musicPlayer.play().catch(e => console.warn("Autoplay blocked:", e));
-  });
+function playTrack(index) {
+  musicPlayer.src = playlist[index];
+  musicPlayer.load();    // Force reload of the audio source
+  musicPlayer.play().catch(e => console.warn("Autoplay blocked:", e));
+}
 
-  // Start music only once when user first clicks
-  document.addEventListener("click", () => {
-    if (musicPlayer.paused) {
-      musicPlayer.src = playlist[trackIndex];
-      musicPlayer.play().catch(e => console.warn("Autoplay blocked:", e));
-    }
-  }, { once: true });
+// On audio ended, play next track
+musicPlayer.addEventListener("ended", () => {
+  trackIndex = (trackIndex + 1) % playlist.length;
+  playTrack(trackIndex);
+});
+
+// Play first track only once on first user interaction (to satisfy browser autoplay policy)
+document.addEventListener("click", () => {
+  if (musicPlayer.paused) {
+    playTrack(trackIndex);
+  }
+}, { once: true });
+
 </script>
 
 
